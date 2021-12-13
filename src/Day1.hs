@@ -1,13 +1,16 @@
-module Main where
+module Day1
+  ( day1,
+  )
+where
 
-import Data.List
+import Data.List (tails, transpose)
 
-readInts :: Read b => FilePath -> IO [b]
-readInts fname = do
+loadValues :: Read b => FilePath -> IO [b]
+loadValues fname = do
   contents <- readFile fname
   let asLines = lines contents
-  let numbers = map read asLines
-  return numbers
+  let values = map read asLines
+  return values
 
 windows :: Int -> [a] -> [[a]]
 windows n = transpose . take n . tails
@@ -20,8 +23,8 @@ findIncreases3 depths =
   where
     wins = windows 3 depths
 
-main :: IO ()
-main = do
-  depths <- readInts "input.txt" :: IO [Int]
+day1 :: IO ()
+day1 = do
+  depths <- loadValues "data/day1_input.txt" :: IO [Int]
   print $ findIncreases1 depths
   print $ findIncreases3 depths
