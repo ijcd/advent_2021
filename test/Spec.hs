@@ -55,7 +55,10 @@ day2Tests =
   testGroup
     "Day 2"
     [ testCase "Part 1" $
-        Day2.runCommands (Day2.mkCommands day2Example) (Day2.Position 0 0) @?= Day2.Position 15 10
+        Day2.runCommandsWithoutAim (Day2.mkCommands day2Example) (Day2.Position 0 0) @?= Day2.Position 15 10,
+      testCase "Part 2" $
+        let Day2.PositionWithAim {..} = Day2.runCommandsWithAim (Day2.mkCommands day2Example) (Day2.PositionWithAim 0 0 0)
+         in (coerce horizontal, coerce depth) @?= (15 :: Int, 60 :: Int)
     ]
 
 -- properties :: TestTree
