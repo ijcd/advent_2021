@@ -19,11 +19,29 @@ extra-source-files:
 # common to point users to the README.md file.
 description: Please see the README on GitHub at <https://github.com/ijcd/advent2021#readme>
 
+default-extensions:
+  - OverloadedStrings
+  - RecordWildCards
+  # - QuasiQuotes
+  # - GeneralizedNewtypeDeriving
+  # - ConstraintKinds
+  # - FlexibleContexts
+  # - TemplateHaskell
+  # - FlexibleInstances
+  # - NoImplicitPrelude
+  # - ScopedTypeVariables
+
 dependencies:
   - base >= 4.7 && < 5
 
 library:
   source-dirs: src
+  ghc-options:
+    # - -Wall
+    # - -Werror
+    - -Wincomplete-record-updates
+    - -Wincomplete-uni-patterns
+    - -Wredundant-constraints
 
 executables:
   advent2021-exe:
@@ -46,3 +64,7 @@ tests:
       - -with-rtsopts=-N
     dependencies:
       - advent2021
+      - tasty
+      - tasty-hunit
+      - tasty-quickcheck
+      - tasty-smallcheck

@@ -1,7 +1,9 @@
 module Lib
-  ( someFunc,
+  ( getFileLines,
   )
 where
 
-someFunc :: IO ()
-someFunc = putStrLn "someFunc"
+getFileLines :: FilePath -> IO [String]
+getFileLines fpath = do
+  contents <- readFile fpath
+  return $ lines contents
